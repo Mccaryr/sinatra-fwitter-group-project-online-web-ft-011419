@@ -1,37 +1,39 @@
 class TweetsController < ApplicationController
 
     get '/tweets' do
-        @tweets = Tweet.all 
+      if logged_in?
+        @tweets = Tweet.all
         erb :'tweets/tweets'
-    end  
-        
-    
+      else
+        redirect '/login'
+      end
+    end
+
     get '/tweets/new' do
         erb :'tweets/new'
-    
-    end 
+    end
 
     post '/tweets' do
         tweet = Tweet.create(content: params[:content])
     redirect "/tweets/#{tweet.id}"
-    end  
+    end
 
-    get '/tweets/:id' do 
+    get '/tweets/:id' do
         @tweet = Tweet.find_by(params[:id])
-        erb :'/tweets/show_tweet'  
-    end 
+        erb :'/tweets/show_tweet'
+    end
 
     get '/tweets/:id/edit' do
         @tweet = Tweet.find_by(params[:id])
-        binding.pry  
+        binding.pry
         erb :'tweets/edit_tweet'
-    end 
+    end
 
     patch '/tweets/:id' do
-        binding.pry  
-    
+        binding.pry
+
     redirect "/tweets/#{tweet.id}"
-    end 
+    end
 
 
 end
