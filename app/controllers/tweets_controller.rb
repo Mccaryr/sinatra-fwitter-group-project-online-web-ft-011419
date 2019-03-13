@@ -11,7 +11,7 @@ class TweetsController < ApplicationController
 
     get '/tweets/new' do
       if logged_in?
-        erb :'tweets/create_tweet'
+        erb :'tweets/new'
       else
         redirect to '/login'
       end
@@ -36,7 +36,7 @@ class TweetsController < ApplicationController
 
     get '/tweets/tweets' do
       @user=User.find_by(session[:user_id])
-      @tweets=Tweets.all
+      @tweets=Tweet.all
       erb  :'tweets/tweets'
   end
 
