@@ -1,6 +1,6 @@
- <%=@tweet.content%> 
+ <%=@tweet.content%>
 
-# <a href='/tweets#{@tweet.id}/edit'>Edit Tweet</a> 
+ <a href='/tweets#{@tweet.id}/edit'>Edit Tweet</a>
 
 <form action="/tweets/<%=@tweet.id%>/delete" method="post">
   <input type="hidden" name="_method" value="delete">
@@ -8,5 +8,5 @@
 </form>
 
  <form action="/tweets/<%=@tweet.id%>/edit" method="get">
-  <input type="submit" value="Edit Tweet">
+  <input type="submit"  id = "submit" value="Edit Tweet">
 </form>

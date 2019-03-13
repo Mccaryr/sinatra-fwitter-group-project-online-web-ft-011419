@@ -2,22 +2,24 @@ require './config/environment'
 
 class ApplicationController < Sinatra::Base
 
+  enable :sessions
+
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
   end
 
-  get '/' do 
+  get '/' do
   erb :index
-  end 
+  end
 
-  helpers do 
-    def logged_in? 
+  helpers do
+    def logged_in?
       !!current_user
-    end 
+    end
 
-    def current_user 
+    def current_user
       @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
-    end 
-  end 
+    end
+  end
 end
